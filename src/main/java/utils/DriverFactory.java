@@ -6,12 +6,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.SignInModule;
+import pageObjects.SignInSuccessPage;
 
 
 public class DriverFactory {
     public static WebDriver driver;
     public ConfigReader configReader;
     public static SignInModule signInModule;
+    public static SignInSuccessPage signInSuccessPage;
 
     public DriverFactory() {
         configReader = new ConfigReader();
@@ -43,6 +45,7 @@ public class DriverFactory {
         finally {
             driver.manage().window().maximize();
             signInModule = PageFactory.initElements(driver, SignInModule.class);
+            signInSuccessPage = PageFactory.initElements(driver, SignInSuccessPage.class);
         }
         return driver;
     }
