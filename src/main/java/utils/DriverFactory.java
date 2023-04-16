@@ -2,9 +2,11 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
+import pageObjects.HomePage;
 import pageObjects.SignInModule;
 import pageObjects.SignInSuccessPage;
 
@@ -14,6 +16,7 @@ public class DriverFactory {
     public ConfigReader configReader;
     public static SignInModule signInModule;
     public static SignInSuccessPage signInSuccessPage;
+    public static HomePage homePage;
 
     public DriverFactory() {
         configReader = new ConfigReader();
@@ -24,8 +27,10 @@ public class DriverFactory {
             String browser = configReader.getBrowser().toUpperCase();
             switch (browser) {
                 case "CHROME":
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--headless");
                     System.setProperty("webdriver.chrome.driver", configReader.getChromeDriverPath());
-                    driver = new ChromeDriver();
+                    driver = new ChromeDriver(options);
                     break;
                 case "IE":
                     System.setProperty("webdriver.ie.driver", configReader.getIEDriverPath());
@@ -46,6 +51,7 @@ public class DriverFactory {
             driver.manage().window().maximize();
             signInModule = PageFactory.initElements(driver, SignInModule.class);
             signInSuccessPage = PageFactory.initElements(driver, SignInSuccessPage.class);
+            homePage = PageFactory.initElements(driver, HomePage.class);
         }
         return driver;
     }

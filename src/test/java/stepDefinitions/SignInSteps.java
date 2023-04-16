@@ -17,14 +17,17 @@ public class SignInSteps extends DriverFactory {
     public void user_enters_username(String username) {
         signInModule.enterUsername(username);
     }
+
     @When("user enters password {string}")
     public void user_enters_password(String password) {
         signInModule.enterPassword(password);
     }
+
     @When("user clicks on submit button")
     public void user_clicks_on_submit_button() {
         signInModule.clickSubmitButton();
     }
+
     @Then("user is logged in successfully")
     public void user_is_logged_in_successfully() {
         Assert.assertTrue(signInSuccessPage.isLoginSuccessLabelDisplayed(), "Login success label NOT displayed");

@@ -86,4 +86,14 @@ public class BasePage extends DriverFactory {
             return url;
         }
     }
+
+    public void waitAndSwitchToFrameByWebElement(WebElement element) {
+        try {
+            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+            System.out.println("Successfully switched frame by web element: " + element.toString());
+        }
+        catch (Exception e) {
+            System.out.println("Unable to switch to frame by web element exception, " + e.getMessage());
+        }
+    }
 }
