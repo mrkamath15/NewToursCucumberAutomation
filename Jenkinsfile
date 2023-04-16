@@ -8,19 +8,19 @@ pipeline {
             }
             post {
                 success {
-                        cucumber buildStatus: 'null', 
-                        customCssFiles: '', 
-                        customJsFiles: '', 
-                        failedFeaturesNumber: -1, 
-                        failedScenariosNumber: -1, 
-                        failedStepsNumber: -1, 
-                        fileIncludePattern: '**/*.json', 
-                        reportTitle: 'New Tours Cucumber Automation',
-                        pendingStepsNumber: -1, 
-                        skippedStepsNumber: -1, 
-                        sortingMethod: 'ALPHABETICAL', 
-                        undefinedStepsNumber: -1
-            }
+                                        cucumber buildStatus: 'null',
+                                        customCssFiles: '',
+                                        customJsFiles: '',
+                                        failedFeaturesNumber: -1,
+                                        failedScenariosNumber: -1,
+                                        failedStepsNumber: -1,
+                                        fileIncludePattern: '**/*.json',
+                						reportTitle: 'New Tours Cucumber Automation',
+                                        pendingStepsNumber: -1,
+                                        skippedStepsNumber: -1,
+                                        sortingMethod: 'ALPHABETICAL',
+                                        undefinedStepsNumber: -1
+                                }
             }
          }
     }
