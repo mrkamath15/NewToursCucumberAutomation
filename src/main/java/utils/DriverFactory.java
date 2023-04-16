@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import pageObjects.HomePage;
 import pageObjects.SignInModule;
 import pageObjects.SignInSuccessPage;
+import pageObjects.UnderConstructionPage;
 
 
 public class DriverFactory {
@@ -17,6 +18,7 @@ public class DriverFactory {
     public static SignInModule signInModule;
     public static SignInSuccessPage signInSuccessPage;
     public static HomePage homePage;
+    public static UnderConstructionPage underConstructionPage;
 
     public DriverFactory() {
         configReader = new ConfigReader();
@@ -52,6 +54,7 @@ public class DriverFactory {
             signInModule = PageFactory.initElements(driver, SignInModule.class);
             signInSuccessPage = PageFactory.initElements(driver, SignInSuccessPage.class);
             homePage = PageFactory.initElements(driver, HomePage.class);
+            underConstructionPage = PageFactory.initElements(driver, UnderConstructionPage.class);
         }
         return driver;
     }
