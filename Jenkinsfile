@@ -15,7 +15,7 @@ pipeline {
             failedScenariosNumber: -1,
             failedStepsNumber: -1,
             fileIncludePattern: '**/*.json',
-            jsonReportDirectory: 'target/cucumber.json',
+            jsonReportDirectory: '**/cucumber.json',
             pendingStepsNumber: -1,
             reportTitle: 'New Tours Cucumber Automation',
             skippedStepsNumber: -1,
