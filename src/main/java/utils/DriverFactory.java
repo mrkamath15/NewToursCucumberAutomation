@@ -6,10 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
-import pageObjects.HomePage;
-import pageObjects.SignInModule;
-import pageObjects.SignInSuccessPage;
-import pageObjects.UnderConstructionPage;
+import pageObjects.*;
 
 
 public class DriverFactory {
@@ -19,6 +16,8 @@ public class DriverFactory {
     public static SignInSuccessPage signInSuccessPage;
     public static HomePage homePage;
     public static UnderConstructionPage underConstructionPage;
+    public static RegisterPage registerPage;
+    public static RegisterSuccessPage registerSuccessPage;
 
     public DriverFactory() {
         configReader = new ConfigReader();
@@ -30,7 +29,7 @@ public class DriverFactory {
             switch (browser) {
                 case "CHROME":
                     ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--headless");
+                    //options.addArguments("--headless");
                     System.setProperty("webdriver.chrome.driver", configReader.getChromeDriverPath());
                     driver = new ChromeDriver(options);
                     break;
@@ -55,6 +54,8 @@ public class DriverFactory {
             signInSuccessPage = PageFactory.initElements(driver, SignInSuccessPage.class);
             homePage = PageFactory.initElements(driver, HomePage.class);
             underConstructionPage = PageFactory.initElements(driver, UnderConstructionPage.class);
+            registerPage = PageFactory.initElements(driver, RegisterPage.class);
+            registerSuccessPage = PageFactory.initElements(driver, RegisterSuccessPage.class);
         }
         return driver;
     }

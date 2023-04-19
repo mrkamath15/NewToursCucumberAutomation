@@ -1,8 +1,10 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.DriverFactory;
@@ -29,6 +31,11 @@ public class BasePage extends DriverFactory {
         }
     }
 
+    public void waitUntilWebElementIsVisibleNoAssert(WebElement element) {
+            wait.until(ExpectedConditions.visibilityOf(element));
+            System.out.println("Element is visible : " + element.toString());
+    }
+
     public void waitAndSendTextToWebElement(WebElement element, String text) {
         try {
             waitUntilWebElementIsVisible(element);
@@ -46,11 +53,12 @@ public class BasePage extends DriverFactory {
         boolean clicked = false;
         int count = 0;
         try {
-            while (count < 5 && !clicked) {
+            while (count < 2 && !clicked) {
                 waitUntilWebElementIsVisible(element);
                 element.click();
                 clicked = true;
                 System.out.println("Successfully clicked the web element: " + element.toString());
+                count++;
             }
         }
         catch (Exception e) {
@@ -59,6 +67,18 @@ public class BasePage extends DriverFactory {
             Assert.fail("Unable to click the web element exception, " + e.getMessage());
         }
     }
+
+    public void waitAndClickWebElementNoAssert(WebElement element) {
+        boolean clicked = false;
+        int count = 0;
+            while (count < 1 && !clicked) {
+                waitUntilWebElementIsVisibleNoAssert(element);
+                element.click();
+                clicked = true;
+                System.out.println("Successfully clicked the web element: " + element.toString());
+                count++;
+            }
+        }
 
     public String getTextFromWebElement(WebElement element) {
         try {
@@ -94,6 +114,19 @@ public class BasePage extends DriverFactory {
         }
         catch (Exception e) {
             System.out.println("Unable to switch to frame by web element exception, " + e.getMessage());
+        }
+    }
+
+    public void waitAndSelectByVisibleText(WebElement element, String visibleText) {
+        try {
+            waitUntilWebElementIsVisible(element);
+            Select select = new Select(element);
+            select.selectByVisibleText(visibleText);
+            System.out.println("Successfully selected drop down value: " + visibleText + " from web element : " + element.toString());
+        }
+        catch (Exception e) {
+            System.out.println("Unable to select drop down value: " + visibleText + " from web element : " + element.toString());
+            Assert.fail("Unable to select drop down value exception: " + e.getMessage());
         }
     }
 }

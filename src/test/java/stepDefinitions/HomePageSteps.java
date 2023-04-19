@@ -10,6 +10,11 @@ public class HomePageSteps extends DriverFactory {
         homePage.clickSignOnLink();
     }
 
+    @When("user clicks on register link")
+    public void user_clicks_on_register_link() {
+        homePage.clickRegisterLink();
+    }
+
     @When("user clicks on support link")
     public void user_clicks_on_support_link() {
         homePage.clickSupportLink();

@@ -34,8 +34,11 @@ public class HomePage extends BasePage {
     @FindBy(linkText = "Vacations")
     private WebElement vacations_Link;
 
-    @FindBy(xpath = "//iframe[contains(@name,'google_ads_iframe')]")
+    @FindBy(xpath = "//iframe[contains(@name,'google_ads_iframe') or contains(@title,'3rd party ad content')]")
     private WebElement advertisement_frame;
+
+    @FindBy(xpath = "//iframe[@id='ad_iframe']")
+    private WebElement adInner_frame;
 
     @FindBy(xpath = "//*[@id='dismiss-button' or text()='Close']")
     private WebElement closeAd_button;
@@ -93,7 +96,16 @@ public class HomePage extends BasePage {
     public void handleAd() {
         if(driver.getCurrentUrl().endsWith("google_vignette")) {
             waitAndSwitchToFrameByWebElement(advertisement_frame);
-            waitAndClickWebElement(closeAd_button);
+            try {
+                waitAndClickWebElementNoAssert(closeAd_button);
+            }
+            catch (Exception e) {
+                System.out.println("Unable to close Ad! Switching to Inner frame!!");
+                waitAndSwitchToFrameByWebElement(adInner_frame);
+                System.out.println("Switched to inner frame successfully");
+                waitAndClickWebElementNoAssert(closeAd_button);
+                System.out.println("Closed the ad!!!");
+            }
         }
     }
 }
