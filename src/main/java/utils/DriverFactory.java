@@ -29,7 +29,7 @@ public class DriverFactory {
             switch (browser) {
                 case "CHROME":
                     ChromeOptions options = new ChromeOptions();
-                    //options.addArguments("--headless");
+                    options.addArguments("--headless");
                     System.setProperty("webdriver.chrome.driver", configReader.getChromeDriverPath());
                     driver = new ChromeDriver(options);
                     break;
