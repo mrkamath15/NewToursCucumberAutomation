@@ -25,6 +25,11 @@ public class HomePageSteps extends DriverFactory {
         homePage.clickContactLink();
     }
 
+    @When("user clicks on flights link")
+    public void user_clicks_on_flights_link() {
+        homePage.clickFlightsLink();
+    }
+
     @When("user clicks on hotels link")
     public void user_clicks_on_hotels_link() {
         homePage.clickHotelsLink();

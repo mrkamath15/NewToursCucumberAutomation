@@ -18,6 +18,8 @@ public class DriverFactory {
     public static UnderConstructionPage underConstructionPage;
     public static RegisterPage registerPage;
     public static RegisterSuccessPage registerSuccessPage;
+    public static FlightsPage flightsPage;
+    public static FlightsResultPage flightsResultPage;
 
     public DriverFactory() {
         configReader = new ConfigReader();
@@ -56,6 +58,8 @@ public class DriverFactory {
             underConstructionPage = PageFactory.initElements(driver, UnderConstructionPage.class);
             registerPage = PageFactory.initElements(driver, RegisterPage.class);
             registerSuccessPage = PageFactory.initElements(driver, RegisterSuccessPage.class);
+            flightsPage = PageFactory.initElements(driver, FlightsPage.class);
+            flightsResultPage = PageFactory.initElements(driver, FlightsResultPage.class);
         }
         return driver;
     }
