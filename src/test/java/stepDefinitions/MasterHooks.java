@@ -1,13 +1,21 @@
 package stepDefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utils.DriverFactory;
 
 public class MasterHooks extends DriverFactory {
+
+    @BeforeAll
+    public static void beforeAll() {
+        logger.info("Automation test suite is started");
+    }
+
+    @AfterAll
+    public static void afterAll() {
+        logger.info("Completed running all the scenarios");
+    }
 
     @Before
     public void setUp(Scenario scenario) {
