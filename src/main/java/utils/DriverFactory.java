@@ -1,5 +1,7 @@
 package utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,6 +22,7 @@ public class DriverFactory {
     public static RegisterSuccessPage registerSuccessPage;
     public static FlightsPage flightsPage;
     public static FlightsResultPage flightsResultPage;
+    public static Logger logger = LogManager.getLogger();
 
     public DriverFactory() {
         configReader = new ConfigReader();
@@ -28,27 +31,31 @@ public class DriverFactory {
     public WebDriver getDriver() {
         try {
             String browser = configReader.getBrowser().toUpperCase();
+            logger.info("Browser selected is: " + browser);
             switch (browser) {
                 case "CHROME":
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--headless");
                     System.setProperty("webdriver.chrome.driver", configReader.getChromeDriverPath());
                     driver = new ChromeDriver(options);
+                    logger.info("Chrome driver initiated and launched successfully");
                     break;
                 case "IE":
                     System.setProperty("webdriver.ie.driver", configReader.getIEDriverPath());
                     driver = new InternetExplorerDriver();
+                    logger.info("IE driver initiated and launched successfully");
                     break;
                 case "FIREFOX":
                     System.setProperty("webdriver.gecko.driver", configReader.getFirefoxDriverPath());
                     driver = new FirefoxDriver();
+                    logger.info("Firefox driver initiated and launched successfully");
                     break;
                 default:
                     break;
             }
         }
         catch (Exception e) {
-            System.out.println("Unable to set up driver: " + e.getMessage());
+            logger.info("Unable to set up driver: " + e.getMessage());
         }
         finally {
             driver.manage().window().maximize();

@@ -8,6 +8,7 @@ import io.cucumber.testng.CucumberOptions;
         glue = {"stepDefinitions"},
         dryRun = false,
         monochrome = true,
+        //tags = "@Smoke",
         plugin = {"pretty", "html:target/cucumber-reports", "json:target/cucumber.json", "junit:target/cucumber.xml","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 )
 
