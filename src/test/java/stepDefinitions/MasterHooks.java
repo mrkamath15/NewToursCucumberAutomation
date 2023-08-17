@@ -33,7 +33,7 @@ public class MasterHooks extends DriverFactory {
         }
         scenario.attach(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES), "image/png", scenario.getName());
         driver.quit();
-        logger.info("Close the browser successfully");
+        logger.info("Closed the browser successfully");
         logger.info("======================================================================");
     }
 }

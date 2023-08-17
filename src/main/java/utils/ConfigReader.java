@@ -7,9 +7,9 @@ import java.util.Properties;
 
 public class ConfigReader {
     private Properties prop;
-    private FileInputStream fileInputStream;
 
     public ConfigReader() {
+        FileInputStream fileInputStream = null;
         try {
             fileInputStream = new FileInputStream(Constants.CONFIG_FILE_PATH);
             prop = new Properties();

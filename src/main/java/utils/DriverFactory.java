@@ -59,15 +59,19 @@ public class DriverFactory {
         }
         finally {
             driver.manage().window().maximize();
-            signInModule = PageFactory.initElements(driver, SignInModule.class);
-            signInSuccessPage = PageFactory.initElements(driver, SignInSuccessPage.class);
-            homePage = PageFactory.initElements(driver, HomePage.class);
-            underConstructionPage = PageFactory.initElements(driver, UnderConstructionPage.class);
-            registerPage = PageFactory.initElements(driver, RegisterPage.class);
-            registerSuccessPage = PageFactory.initElements(driver, RegisterSuccessPage.class);
-            flightsPage = PageFactory.initElements(driver, FlightsPage.class);
-            flightsResultPage = PageFactory.initElements(driver, FlightsResultPage.class);
+            initializePages();
         }
         return driver;
+    }
+
+    public void initializePages() {
+        signInModule = PageFactory.initElements(driver, SignInModule.class);
+        signInSuccessPage = PageFactory.initElements(driver, SignInSuccessPage.class);
+        homePage = PageFactory.initElements(driver, HomePage.class);
+        underConstructionPage = PageFactory.initElements(driver, UnderConstructionPage.class);
+        registerPage = PageFactory.initElements(driver, RegisterPage.class);
+        registerSuccessPage = PageFactory.initElements(driver, RegisterSuccessPage.class);
+        flightsPage = PageFactory.initElements(driver, FlightsPage.class);
+        flightsResultPage = PageFactory.initElements(driver, FlightsResultPage.class);
     }
 }
